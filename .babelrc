@@ -1,0 +1,4 @@
+{
+  "presets": ["stage-1", "stage-2", "react", "es2015"],
+  /*"plugins": ["transform-class-properties"]*/
+}
