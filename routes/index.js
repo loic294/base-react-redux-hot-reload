@@ -11,6 +11,13 @@ module.exports = function() {
 
   })
 
+  router.post("/login", function(req, res, next) {
+
+      console.log("BODY", req.body);
+
+      res.send("Ça marche!")
+  })
+
   return router;
 
 };
