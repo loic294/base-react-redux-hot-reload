@@ -3,7 +3,8 @@
 // import reducers from './reducers'
 import { Router, Route, browserHistory } from 'react-router'
 
-import App from './app'
+import Login from './login'
+import Signup from './signup'
 // import App from './containers/AppContainer'
 // import NotFound from './components/NotFound.js';
 
@@ -17,7 +18,8 @@ import App from './app'
 
 ReactDOM.render(
     <Router history={browserHistory}>
-      <Route path="/home" component={App}></Route>
+      <Route path="/login" component={Login}></Route>
+      <Route path="/signup" component={Signup}></Route>
     </Router>,
   document.getElementById('content')
 );

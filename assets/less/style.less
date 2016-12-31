@@ -1,0 +1,102 @@
+/*
+  Ce fichier est utilisé pour le style de l'app.
+
+  La palette de couleur a été crée avec : https://coolors.co/30bced-303036-fffaff-fc5130-050401
+
+*/
+
+/* Variable */
+@blue: #3A506B;
+@grey: #303036;
+@light: #FFFAFF;
+@red: #FC5130;
+@dark: #050401;
+
+/* Remise à zéro */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 200;
+  margin: 0.2em 0;
+}
+
+/* Thème personnalisé */
+body {
+  color: @dark;
+  font-family: 'Roboto', sans-serif; // Voir https://fonts.google.com
+} // body
+
+/* Input personnalisé */
+input, textarea, select {
+  background-color: rgba(0,0,0,0); // Transparent
+  width: 100%;
+  padding: 6px 12px;
+  border: 2px solid lighten(@grey, 60%);
+  border-radius: 3px;
+  margin: 5px 0 10px;
+  transition: all ease 0.4s; // Ajoute une belle transition
+
+  &:focus {
+    outline: none;
+    border-color: @grey;
+  }
+} // input, textarea, select
+
+label {
+  font-weight: 900;
+}
+
+button, .btn {
+  width: 100%;
+  border: 2px solid @grey;
+  background-color: transparent; // Équivalent à rgba(0,0,0,0)
+  padding: 0.6em 3em;
+  font-size: 1em;
+  border-radius: 1.6em;
+  margin-top: 15px;
+  cursor: pointer; // Change le curseur
+  transition: all ease 0.2s; // Ajoute une belle transition
+
+  &:hover, &:focus {
+    outline: none;
+    border-color: lighten(@grey, 30%);;
+    color: lighten(@grey, 30%);;
+  }
+
+}
+
+.login {
+  background-color: @blue;
+  position: fixed; // Permet de s'assure que le contenu prend toute la page
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* flexbox, super utile pour center des éléments*/
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+
+  .login-container {
+    background-color: @light;
+    padding: 40px;
+    max-width: 480px;
+
+    h1 {
+      text-align: center;
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+
+  } // login-container
+
+} // login

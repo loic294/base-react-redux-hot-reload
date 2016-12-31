@@ -39,10 +39,10 @@ module.exports = function(callback) {
   var server = http.createServer(app);
 
   // Connect to MongoDB using Mongoose
-  // var mongoose = require('mongoose');
-  // mongoose.set('debug', true);
+  var mongoose = require('mongoose');
+  mongoose.set('debug', true);
   // var URI = process.env.MONGODB_URI || config.database.mongo;
-  // mongoose.connect(URI);
+  mongoose.connect("mongodb://heroku_v7zzwrbm:uusquvmhhnnd157eautjg66k2b@ds141128.mlab.com:41128/heroku_v7zzwrbm");
 
   /**
    * Listen on provided port, on all network interfaces.
