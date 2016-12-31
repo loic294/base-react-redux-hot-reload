@@ -5,6 +5,8 @@ import { Router, Route, browserHistory } from 'react-router'
 
 import Login from './login'
 import Signup from './signup'
+import App from './components/app'
+import Dashboard from './components/dashboard'
 // import App from './containers/AppContainer'
 // import NotFound from './components/NotFound.js';
 
@@ -18,8 +20,15 @@ import Signup from './signup'
 
 ReactDOM.render(
     <Router history={browserHistory}>
-      <Route path="/login" component={Login}></Route>
-      <Route path="/signup" component={Signup}></Route>
+      <Route path="auth">
+        <Route path="login" component={Login}></Route>
+        <Route path="signup" component={Signup}></Route>
+      </Route>
+
+      <Route path="/" component={App}>
+        <Route path="dashboard" component={Dashboard} />
+      </Route>
+
     </Router>,
   document.getElementById('content')
 );

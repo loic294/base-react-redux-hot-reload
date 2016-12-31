@@ -7,7 +7,7 @@
     "start-windows": "set NODE_ENV=debug && nodemon index",
     "build": "set NODE_ENV=production && webpack --stats --config ./webpack/prod.config.js",
     "dev": "set NODE_ENV=development && nodemon --inspect index.js",
-    "webpack" : "webpack ./webpack/prod.config.js --w --stats --config"
+    "webpack": "webpack ./webpack/prod.config.js --w --stats --config"
   },
   "engines": {
     "node": "7.0.0",
@@ -23,6 +23,7 @@
     "babel-preset-stage-1": "^6.5.0",
     "babel-preset-stage-2": "^6.11.0",
     "bcrypt": "^0.8.7",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.13.2",
     "compression": "^1.6.2",
     "connect-flash": "^0.1.1",

@@ -5,40 +5,40 @@ module.exports = function() {
 
   var Users = require("../models/Users").model
 
-  router.get("*", function(req, res, next) {
+  var authMiddleware = require("../middleware/auth.js");
 
-    res.render('index', {
-      title: 'Hello World',
-    });
 
+
+  router.get([
+    "/dashboard"
+  ], authMiddleware, function(req, res, next) {
+
+      console.log("USER", req.user);
+      if(typeof req.user !== "undefined") {
+
+        Users.findById(req.user._id).select(
+          "nom email _id"
+        ).exec(function(err, user){
+
+          res.render('index', {
+            title: 'Hello World',
+            user : JSON.stringify(user)
+          });
+
+        });
+
+      }
   })
 
-  router.post("/login", function(req, res, next) {
+  router.get("/auth/*", function(req, res, next) {
 
-      console.log("BODY", req.body);
-      res.send("Ça marche!")
-  })
-
-  router.post("/signup", function(req, res, next) {
-
-      console.log("BODY", req.body);
-
-      var user = new Users({
-        nom : req.body.nom,
-        email : req.body.email,
-        password : req.body.password
+      res.render('auth', {
+        title: 'Hello World'
       });
-      user.save(function (err) {
-        if (err) {
-          return next(err)
-        } else {
-          res.send(user)
-        }
-      });
-
-
 
   })
+
+
 
   return router;
 

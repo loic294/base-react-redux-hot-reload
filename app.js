@@ -9,6 +9,7 @@ var flash = require('connect-flash');
 var fs = require("fs");
 var passport = require('passport');
 var compression = require('compression');
+var session = require('express-session');
 
 var app = express();
 
@@ -40,53 +41,38 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// Connect to Redis
-var session = require('express-session');
+
 // var RedisStore = require('connect-redis')(session);
 app.use(cookieParser());
-// app.use(session({
-//     store: new RedisStore(config.session.options),
-//     secret: config.session.secret,
-//     cookie: {
-//       maxAge: null,
-//       secure: false,
-//       httpOnly: false
-//     },
-//     resave : false,
-//     saveUninitialized : true,
-// }));
 
-// Vérifie que la session est connectée
-// app.use(function (req, res, next) {
-//   if (!req.session) {
-//     return next(new Error('Redis session not working!')); // handle error
-//   }
-//   // req.session.cookie = {
-//   //   maxAge: 36000000,
-//   //   secure: false,
-//   //   httpOnly: false
-//   // };
-//   //console.log('session cookie', req.session);
-//   next(); // otherwise continue
-// });
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'p05Vljh*JBlLROKqMIa#vH@o5Z*7h3^8y1Mb',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 
 app.use(flash());
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-//
-// passport.serializeUser(function(user, done) {
-//   done(null, user._id);
-// });
-//
-// passport.deserializeUser(function(id, done) {
-//   var User = require("./models/Users").model;
-//   User.findById(id).populate('tuteur').exec(function(err, user) {
-//     if(user === null || user._id === null) { done(err, false) }
-//     // console.log("base user", user);
-//     done(err, user);
-//   });
-// });
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  var User = require("./models/Users").model;
+
+  // console.log("DESERIALIZE USER", id);
+
+  User.findById(id).lean().exec(function(err, user) {
+    if(user === null || user._id === null) { done(err, false) }
+    console.log("base user", user);
+    done(err, user);
+  });
+});
 
 
 module.exports = app;

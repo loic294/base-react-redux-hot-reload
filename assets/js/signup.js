@@ -6,7 +6,8 @@ class App extends React.Component {
     this.state = {
       nom : "",
       email : "",
-      password : ""
+      password : "",
+      error : []
     } // state
 
   } // constructor
@@ -24,12 +25,30 @@ class App extends React.Component {
   }
 
   login() {
+
+    this.setState({ error : [] });
+
     fetch('/signup', {
       method: 'POST',
+      credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(this.state)
+    }).then(function(response) {
+      return response.json()
+    }).then(function(json) {
+
+      if(json.status === "ok") {
+        window.location = window.location.protocol + "//" +  location.host + "/dashboard";
+      } else {
+        this.state.error.push(json.message);
+        this.setState({ error : this.state.error });
+      }
+
+      console.log('parsed json', json)
+    }).catch(function(ex) {
+      console.log('parsing failed', ex)
     })
   }
 
@@ -38,6 +57,13 @@ class App extends React.Component {
     console.log(this.state);
 
     return <div>
+
+      {this.state.error.length > 0 && <div>
+        {this.state.error.map((elem, i)=>{
+          return <div className="error">{elem}</div>
+        })}
+      </div>}
+
       <label>Nom</label>
       <input type="text" name="nom" value={this.state.nom} onChange={this.changeNom.bind(this)} />
       <br/>
