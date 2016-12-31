@@ -3,21 +3,15 @@ class Dashboard extends React.Component {
   constructor() {
     super()
 
-    this.state = {
-      user : USER
-    }
-
-    console.log(this.state)
-
   }
 
   render() {
 
     return (
-      <div className="dashboard">
+      <div className="dashboard-container">
 
-       <div>
-         Bonjour {this.state.user.nom}
+       <div className="inner-content">
+         Bonjour {this.props.user.nom}
        </div>
 
       </div>

@@ -10,7 +10,8 @@ module.exports = function() {
 
 
   router.get([
-    "/dashboard"
+    "/dashboard",
+    "/clients"
   ], authMiddleware, function(req, res, next) {
 
       console.log("USER", req.user);

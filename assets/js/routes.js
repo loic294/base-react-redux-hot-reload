@@ -1,24 +1,18 @@
-// import { Provider } from 'react-redux';
-// import { createStore, applyMiddleware, combineReducers  } from 'redux';
-// import reducers from './reducers'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, combineReducers  } from 'redux';
+import reducers from './reducers/index'
 import { Router, Route, browserHistory } from 'react-router'
 
 import Login from './login'
 import Signup from './signup'
 import App from './components/app'
-import Dashboard from './components/dashboard'
-// import App from './containers/AppContainer'
-// import NotFound from './components/NotFound.js';
+import Dashboard from './containers/dashboard'
+import Clients from './containers/client'
 
-// let store = window.store = createStore(combineReducers(reducers));
-// const history = syncHistoryWithStore(browserHistory, store);
-
-// <Route path="/home" component={} />
-// <Route path="*" component={NotFound} />
-
-
+const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
+  <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="auth">
         <Route path="login" component={Login}></Route>
@@ -27,8 +21,10 @@ ReactDOM.render(
 
       <Route path="/" component={App}>
         <Route path="dashboard" component={Dashboard} />
+        <Route path="clients" component={Clients} />
       </Route>
 
-    </Router>,
+    </Router>
+  </Provider>,
   document.getElementById('content')
 );

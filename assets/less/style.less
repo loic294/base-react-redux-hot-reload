@@ -11,6 +11,8 @@
 @red: #FC5130;
 @dark: #050401;
 
+@menu-width: 320px;
+
 /* Remise à zéro */
 body, html {
   margin: 0;
@@ -99,3 +101,46 @@ button, .btn {
   } // login-container
 
 } // login
+
+
+.app {
+  .navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: @menu-width;
+    background-color: @dark;
+    color: @light;
+
+    a {
+      text-decoration: none;
+      color: @light;
+    }
+
+    .nav-items {
+      width: 100%;
+      padding: 10px 20px;
+      font-size: 1.2em;
+    }
+
+  } // .navbar
+
+  .content {
+    background-color: rgba(0,0,0,0.06);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: @menu-width;
+
+    .inner-content {
+      background-color: @light;
+      max-width: 760px;
+      margin: 60px auto;
+      padding: 40px 30px;
+    }
+
+  } //.content
+
+} // .app
