@@ -11,4 +11,24 @@ Pour déamrer le serveur il faut simplement faire :
 ```
 npm run dev
 ```
-Le serveur devrait démarrer et la page devrait être accesible à l'addresse `localhost:3002` 
+Le serveur devrait démarrer et la page devrait être accesible à l'addresse `localhost:3002`. 
+
+# Arrêter et redémarrer le serveur
+
+Pour arrêter le serveur il faut faire `Ctrl+C` deux fois. Arpès on peut rentrer
+```
+npm run dev
+```
+pour redémarrer le serveur.  
+
+# Erreurs fréquentes 
+
+## `Can't find module `
+
+Dans ce cas vous n'avez pas installé correctement les packages. Essayez de réinstaller les packages : 
+```
+npm install
+```
+## Erreur de timeout
+
+Ça veut simplement dire qu'il y a eu une erreur de connexion. Redémarrez le serveur.
