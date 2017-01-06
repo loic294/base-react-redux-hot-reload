@@ -23,12 +23,17 @@ pour redémarrer le serveur.
 
 # Erreurs fréquentes 
 
-## `Can't find module `
+## `Can't find module xyz`
 
 Dans ce cas vous n'avez pas installé correctement les packages. Essayez de réinstaller les packages : 
 ```
 npm install
 ```
+ou installez le package manquant en entrant : 
+```
+npm install xyz
+```
+
 ## Erreur de timeout
 
 Ça veut simplement dire qu'il y a eu une erreur de connexion. Redémarrez le serveur.
