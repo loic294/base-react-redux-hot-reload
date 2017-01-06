@@ -4,3 +4,11 @@ Pour installer le projet, faites un clone ou téléchargez le zip (recommandé s
 ```
 npm install
 ```
+
+# Démarer le serveur 
+Pour déamrer le serveur il faut simplement faire :
+
+```
+npm run dev
+```
+Le serveur devrait démarrer et la page devrait être accesible à l'addresse `localhost:3002` 
